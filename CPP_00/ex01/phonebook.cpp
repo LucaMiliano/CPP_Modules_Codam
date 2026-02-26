@@ -6,7 +6,7 @@
 /*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 16:49:48 by lpieck            #+#    #+#             */
-/*   Updated: 2026/02/25 18:46:51 by lpieck           ###   ########.fr       */
+/*   Updated: 2026/02/26 13:35:49 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void PhoneBook::addContact()
 			std::cout << "Enter phone number: ";
 			if (!std::getline(std::cin, phone_number) || phone_number.empty())
 				std::cout << "Cannot be empty, try again.\n";
-			else if (!std::all_of(phone_number.begin(), phone_number.end(), ::isdigit))
+			else if (!std::all_of(phone_number.begin(), phone_number.end(), ::isdigit)) //all_of (algorithm) forbidden
 				std::cout << "Phone number can have digits only, try again.\n";
 			else
 				return (phone_number);
@@ -110,7 +110,7 @@ void PhoneBook::searchContact()
 			std::cout << "Invalid index. Try between 1 and " << contactCount << ".\n";
 			showContactList();
 		}
-		else if (!std::all_of(index_input.begin(), index_input.end(), ::isdigit))
+		else if (!std::all_of(index_input.begin(), index_input.end(), ::isdigit)) //all_of (algorithm) forbidden
 		{
 			std::cout << "Invalid index. Try between 1 and " << contactCount << ".\n";
 			showContactList();

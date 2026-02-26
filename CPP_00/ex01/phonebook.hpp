@@ -6,7 +6,7 @@
 /*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 16:50:54 by lpieck            #+#    #+#             */
-/*   Updated: 2026/02/25 18:40:50 by lpieck           ###   ########.fr       */
+/*   Updated: 2026/02/26 13:34:47 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
-#include <algorithm>
 
 class Contact
 {
