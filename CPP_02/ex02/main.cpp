@@ -6,7 +6,7 @@
 /*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 15:47:14 by lpieck            #+#    #+#             */
-/*   Updated: 2026/03/12 17:30:54 by lpieck           ###   ########.fr       */
+/*   Updated: 2026/03/26 14:14:42 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,3 +24,4 @@ std::cout << b << std::endl;
 std::cout << Fixed::max( a, b ) << std::endl;
 return 0;
 }
+
