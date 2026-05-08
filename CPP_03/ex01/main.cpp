@@ -6,30 +6,22 @@
 /*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 13:16:20 by lpieck            #+#    #+#             */
-/*   Updated: 2026/05/08 15:23:48 by lpieck           ###   ########.fr       */
+/*   Updated: 2026/05/08 17:19:46 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 int main(void)
 {
-	ClapTrap Ferb("Ferb");
+	ScavTrap Ferb("Ferb");
 	
 	Ferb.attack("Phineas");
 	Ferb.takeDamage(8);
 	Ferb.beRepaired(2);
 	Ferb.attack("Phineas");
-	Ferb.attack("Phineas");
-	Ferb.attack("Phineas");
-	Ferb.attack("Phineas");
-	Ferb.attack("Phineas");
-	Ferb.attack("Phineas");
-	Ferb.attack("Phineas");
-	Ferb.attack("Phineas");
-	Ferb.attack("Phineas"); // Ferb has no energy points and should be unable to anything from now
 	Ferb.beRepaired(2);
-	Ferb.takeDamage(8); // Ferb is dead and should be unable to be interacted with
+	Ferb.takeDamage(8);
 	Ferb.beRepaired(2);
 	Ferb.attack("Phineas");
 	Ferb.takeDamage(9);

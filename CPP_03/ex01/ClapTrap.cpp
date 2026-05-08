@@ -6,7 +6,7 @@
 /*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 13:16:23 by lpieck            #+#    #+#             */
-/*   Updated: 2026/05/08 15:27:22 by lpieck           ###   ########.fr       */
+/*   Updated: 2026/05/08 17:18:25 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ ClapTrap::ClapTrap(std::string name)
 	this->hit_points = 10;
 	this->energy_points = 10;
 	this->attack_damage = 0;
-	std::cout << name << " is constructed\n";
+	std::cout << name << " is constructed as ClapTrap\n";
 }
 
 ClapTrap::~ClapTrap()
 {
-	std::cout << name << " is deconstructed\n";
+	std::cout << name << " is deconstructed as ClapTrap\n";
 }
 
 ClapTrap::ClapTrap(const ClapTrap& other)
