@@ -6,15 +6,15 @@
 /*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 13:16:20 by lpieck            #+#    #+#             */
-/*   Updated: 2026/05/18 15:02:56 by lpieck           ###   ########.fr       */
+/*   Updated: 2026/05/18 16:13:49 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 int main(void)
 {
-	ScavTrap Ferb("Ferb");
+	FragTrap Ferb("Ferb");
 	
 	Ferb.attack("Phineas");
 	Ferb.takeDamage(8);
@@ -25,6 +25,6 @@ int main(void)
 	Ferb.beRepaired(2);
 	Ferb.attack("Phineas");
 	Ferb.takeDamage(9);
-	Ferb.guardGate();
+	Ferb.highFivesGuys();
 	return (0);
 }

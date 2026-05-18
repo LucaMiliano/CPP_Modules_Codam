@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/06 13:16:20 by lpieck            #+#    #+#             */
-/*   Updated: 2026/05/18 15:02:56 by lpieck           ###   ########.fr       */
+/*   Created: 2026/05/18 16:18:26 by lpieck            #+#    #+#             */
+/*   Updated: 2026/05/18 16:30:10 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#pragma once
 
-int main(void)
-{
-	ScavTrap Ferb("Ferb");
+#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
+
+class DiamondTrap: public ScavTrap, public FragTrap {
+	private:
+		std::string name;
+	public:
+		DiamondTrap(std::string name);
+		DiamondTrap(const DiamondTrap& other);
+		DiamondTrap& operator=(const DiamondTrap& other);
+		void whoAmI();
+		void attack(const std::string& target) override;
+		~DiamondTrap();
+};
 	
-	Ferb.attack("Phineas");
-	Ferb.takeDamage(8);
-	Ferb.beRepaired(2);
-	Ferb.attack("Phineas");
-	Ferb.beRepaired(2);
-	Ferb.takeDamage(8);
-	Ferb.beRepaired(2);
-	Ferb.attack("Phineas");
-	Ferb.takeDamage(9);
-	Ferb.guardGate();
-	return (0);
-}

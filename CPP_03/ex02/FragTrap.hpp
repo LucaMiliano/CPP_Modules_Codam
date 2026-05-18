@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/06 13:16:20 by lpieck            #+#    #+#             */
-/*   Updated: 2026/05/18 15:02:56 by lpieck           ###   ########.fr       */
+/*   Created: 2026/05/18 16:05:02 by lpieck            #+#    #+#             */
+/*   Updated: 2026/05/18 16:09:53 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#pragma once
 
-int main(void)
-{
-	ScavTrap Ferb("Ferb");
-	
-	Ferb.attack("Phineas");
-	Ferb.takeDamage(8);
-	Ferb.beRepaired(2);
-	Ferb.attack("Phineas");
-	Ferb.beRepaired(2);
-	Ferb.takeDamage(8);
-	Ferb.beRepaired(2);
-	Ferb.attack("Phineas");
-	Ferb.takeDamage(9);
-	Ferb.guardGate();
-	return (0);
-}
+#include "ClapTrap.hpp"
+
+class FragTrap: public ClapTrap {
+public:
+	FragTrap(std::string name);
+	FragTrap(const FragTrap& other);
+	FragTrap& operator=(const FragTrap& other);
+	void highFivesGuys(void);
+	virtual ~FragTrap();
+};
