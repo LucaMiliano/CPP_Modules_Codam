@@ -11,11 +11,12 @@ bool ScalarConverter::isValidBody(const std::string &body) {
 	for (std::size_t i = 0; i < len; ++i) {
 		char c = body[i];
 		if (c == '-' || c == '+') {
-			if (i != 0) return false; // sign only allowed at the very start
+			if (i != 0) return false; // sign only allowed at start
 		}
 		else if (c == '.') {
 			if (seenDot) return false; // only one dot allowed
 			seenDot = true;
+			if (i == 0 || i == len - 1) return false;
 		}
 		else if (std::isdigit(static_cast<unsigned char>(c))) {
 			seenDigit = true;
@@ -52,7 +53,6 @@ ScalarType ScalarConverter::determineType(const std::string &input)
 {
 	if (input.length() == 1 && !std::isdigit(static_cast<unsigned char>(input[0])))
 	{
-		std::cout << "input is a char literal" << std::endl;
 		return ScalarType::CHAR;
 	}
 	if (input == "nanf" || input == "+inff" || input == "-inff")
@@ -62,25 +62,14 @@ ScalarType ScalarConverter::determineType(const std::string &input)
 	if (isValidBody(input))
 	{
 		if (input.back() == 'f')
-		{
-			std::cout << "input is a float literal" << std::endl;
 			return ScalarType::FLOAT;
-		}
-		else if (intPossibleFrom(std::stod(input)))
-		{
-			std::cout << "input is an int literal" << std::endl;
+		else if (intPossibleFrom(std::stod(input)) && !input.contains("."))
 			return ScalarType::INT;
-		}
 		else
-		{
-			std::cout << "input is a double literal" << std::endl;
 			return ScalarType::DOUBLE;
-		}
 	}
-	std::cout << "input is invalid" << std::endl;
 	return ScalarType::INVALID;
 }
-// ---- printing (formats float/double with trailing .0 / f, handles nan/inf) ----
 
 static void printChar(bool possible, char c) {
 	std::cout << "char: ";
@@ -91,14 +80,6 @@ static void printChar(bool possible, char c) {
 	} else {
 		std::cout << "'" << c << "'" << std::endl;
 	}
-}
-
-static void printInt(bool possible, int i) {
-	std::cout << "int: ";
-	if (!possible)
-		std::cout << "impossible" << std::endl;
-	else
-		std::cout << i << std::endl;
 }
 
 static void printFloat(float f) {
@@ -135,8 +116,6 @@ void ScalarConverter::convert(const std::string &input) {
 		return;
 	}
 
-	std::cout << "input = " << input << std::endl;
-
 	ScalarType type = determineType(input);
 
 	if (type == ScalarType::INVALID) {
@@ -144,15 +123,13 @@ void ScalarConverter::convert(const std::string &input) {
 		return;
 	}
 
-	// Work in double internally so every source type shares the same
-	// nan/inf/range validation before any narrowing cast happens.
 	double asDouble = 0.0;
 	char literalChar = 0;
 	bool sourceIsChar = false;
 
 	switch (type) {
 		case ScalarType::CHAR:
-			literalChar = input[1];
+			literalChar = input[0];
 			sourceIsChar = true;
 			asDouble = static_cast<double>(literalChar);
 			break;
@@ -168,23 +145,17 @@ void ScalarConverter::convert(const std::string &input) {
 		case ScalarType::INVALID:
 			break; // unreachable, handled above
 	}
-
-	std::cout << "type of input is: " << (int)type << std::endl;
-	// char output
+	
 	if (sourceIsChar) {
 		printChar(true, literalChar);
 	} else {
 		bool ok = charPossibleFrom(asDouble);
 		printChar(ok, ok ? static_cast<char>(asDouble) : 0);
 	}
-
-	// int output
-	bool intOk = intPossibleFrom(asDouble);
-	printInt(intOk, intOk ? static_cast<int>(asDouble) : 0);
-
-	// float output — always representable (may become inf on overflow, which is valid float behavior)
+	if (intPossibleFrom(asDouble))
+		std::cout << "int: " << static_cast<int>(asDouble) << std::endl;
+	else
+		std::cout << "int: impossible" << std::endl;
 	printFloat(static_cast<float>(asDouble));
-
-	// double output
 	printDouble(asDouble);
 }
