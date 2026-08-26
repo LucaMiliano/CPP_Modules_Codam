@@ -6,7 +6,7 @@
 /*   By: lpieck <lpieck@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 11:03:17 by lpieck            #+#    #+#             */
-/*   Updated: 2026/05/28 11:24:45 by lpieck           ###   ########.fr       */
+/*   Updated: 2026/05/28 11:25:58 by lpieck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ int main()
 	const WrongAnimal* i = new WrongCat();
 	std::cout << j->getType() << " " << std::endl;
 	std::cout << i->getType() << " " << std::endl;
-	i->makeSound(); //will output the cat sound!
-	j->makeSound();
 	meta->makeSound();
+	j->makeSound();
+	i->makeSound(); //will output the wrong cat sound!
 	delete meta;
 	delete j;
 	delete i;
