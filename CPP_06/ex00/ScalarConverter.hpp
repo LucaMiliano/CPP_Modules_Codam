@@ -1,11 +1,6 @@
 #pragma once
 
 #include <string>
-#include <iostream>
-#include <iomanip>
-#include <limits>
-#include <cmath>
-#include <stdexcept>
 
 enum class ScalarType {
 	CHAR,

@@ -1,7 +1,7 @@
 #include "Base.hpp"
-#include "A.cpp"
-#include "B.cpp"
-#include "C.cpp"
+#include "A.hpp"
+#include "B.hpp"
+#include "C.hpp"
 #include <cstdlib>
 #include <iostream>
 #include <ctime>
@@ -37,34 +37,29 @@ void identify(Base* p)
 
 void identify(Base& p)
 {
+	// catch (...) because std::bad_cast lives in <typeinfo>, which is forbidden
 	try
 	{
-		A& a = dynamic_cast<A&>(p);
+		(void)dynamic_cast<A&>(p);
 		std::cout << "A" << std::endl;
-		(void)a; // To avoid unused variable warning
+		return;
 	}
-	catch (std::bad_cast&)
+	catch (...) {}
+	try
 	{
-		try
-		{
-			B& b = dynamic_cast<B&>(p);
-			std::cout << "B" << std::endl;
-			(void)b; // To avoid unused variable warning
-		}
-		catch (std::bad_cast&)
-		{
-			try
-			{
-				C& c = dynamic_cast<C&>(p);
-				std::cout << "C" << std::endl;
-				(void)c; // To avoid unused variable warning
-			}
-			catch (std::bad_cast&)
-			{
-				std::cout << "Unknown type" << std::endl;
-			}
-		}
+		(void)dynamic_cast<B&>(p);
+		std::cout << "B" << std::endl;
+		return;
 	}
+	catch (...) {}
+	try
+	{
+		(void)dynamic_cast<C&>(p);
+		std::cout << "C" << std::endl;
+		return;
+	}
+	catch (...) {}
+	std::cout << "Unknown type" << std::endl;
 }
 
 int main(void){

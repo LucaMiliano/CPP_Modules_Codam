@@ -8,7 +8,7 @@
 #include <algorithm>
 
 template <typename T>
-typename T::iterator easyfind(T &container, int num)
+typename T::iterator easyfind(T &container, int num) // for vectors or lists
 {
 	typename T::iterator found = std::find(container.begin(), container.end(), num);
 	if (found == container.end())
@@ -17,7 +17,7 @@ typename T::iterator easyfind(T &container, int num)
 }
 
 template <typename T, std::size_t N>
-T *easyfind(T (&array)[N], int num)
+T *easyfind(T (&array)[N], int num) // for arrays
 {
 	T *found = std::find(array, array + N, num);
 	if (found == array + N)

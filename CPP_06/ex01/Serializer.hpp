@@ -12,8 +12,8 @@ class Serializer
 { 
 
 	public:
-		static uintptr_t serialize(Data* ptr);
-		static Data* deserialize(uintptr_t raw);
+		static std::uintptr_t serialize(Data* ptr);
+		static Data* deserialize(std::uintptr_t raw);
 		Serializer() = delete;
 		Serializer(const Serializer &other) = delete;
 		Serializer &operator=(const Serializer &other) = delete;
